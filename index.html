@@ -827,7 +827,8 @@
             const opts = document.querySelectorAll('#quizOptions .option');
             opts.forEach(o => o.classList.add('disabled'));
             
-            const isCorrect = correct.includes(selected.charAt(0));
+            const answer = correct.toUpperCase();
+            const isCorrect = answer.includes(selected.charAt(0).toUpperCase());
             if (isCorrect) {
                 el.classList.add('correct');
                 learned.add(currentQuiz);
@@ -836,8 +837,10 @@
                 el.classList.add('wrong');
                 // Highlight correct one
                 opts.forEach(o => {
-                    if (correct.includes(o.innerText.charAt(0))) o.classList.add('correct');
-                });
+    if (answer.includes(o.innerText.charAt(0).toUpperCase())) {
+        o.classList.add('correct');
+    }
+});
             }
         }
 
@@ -915,7 +918,7 @@
                 div.className = 'option';
                 div.innerText = opt;
                 div.onclick = () => {
-                    const isCorrect = q.a.includes(opt.charAt(0));
+                    const isCorrect = q.a.toUpperCase().includes(opt.charAt(0).toUpperCase());
                     if (isCorrect) testScore++;
                     nextTest();
                 };
